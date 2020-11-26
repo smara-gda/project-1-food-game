@@ -51,7 +51,7 @@ class Game {
 
   rainingFoods() {
     const currentTimeStamp = Date.now();
-    // make food items appear every 3 and 7 secs
+    // make food items appear every 3 and 5 secs
     if (currentTimeStamp > this.lastBadFoodTimeStamp + 2000) {
       this.badFoods.push(new BadFood(0));
       this.lastBadFoodTimeStamp = currentTimeStamp;
@@ -59,6 +59,29 @@ class Game {
     if (currentTimeStamp > this.lastGoodFoodTimeStamp + 5000) {
       this.goodFoods.push(new GoodFood());
       this.lastGoodFoodTimeStamp = currentTimeStamp;
+    }
+  }
+
+  removeFoods() {
+    for (let badfood of this.badFoods) {
+      if (
+        badfood.badFoodY >= this.player.playerY - this.player.playerHeight &&
+        badfood.badFoodX >= this.player.playerX - this.player.playerWidth
+      ) {
+        this.badFoods.splice(0, 1);
+        // score -=10;
+        // play sad sound;
+      }
+    }
+    for (let goodfood of this.goodFoods) {
+      if (
+        goodfood.goodFoodY >= this.player.playerY - this.player.playerHeight &&
+        goodfood.goodFoodX >= this.player.playerX - this.player.playerWidth
+      ) {
+        this.goodFoods.splice(0, 1);
+        // score +=10;
+        //play hppy sound;
+      }
     }
   }
 
@@ -73,6 +96,7 @@ class Game {
     for (let goodFood of this.goodFoods) {
       goodFood.runLogic();
     }
+    this.removeFoods();
     this.avoidGoingOutOfCanvas();
   }
   // calling draw method for every food
