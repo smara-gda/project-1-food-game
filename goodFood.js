@@ -2,7 +2,7 @@ class GoodFood {
   constructor() {
     this.foodWidth = 50;
     // position of food item is random
-    this.goodFoodX = Math.floor(Math.random() * (width - this.foodWidth));
+    this.goodFoodX = Math.floor(Math.random() * (cnvWidth - this.foodWidth));
     this.goodFoodY = 0;
     this.foodHeight = 50;
   }

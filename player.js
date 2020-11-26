@@ -1,11 +1,9 @@
 class Player {
-  constructor() {
-    this.playerHeight = 50;
-    // make player Y position to always stick at the bottom of the canvas
-    let newY = canvas.height - this.playerHeight;
-    this.playerY = newY;
-    this.playerX = width / 2;
-    this.playerWidth = 50;
+  constructor(playerX, playerY, height, width) {
+    this.playerHeight = height;
+    this.playerY = playerY;
+    this.playerX = playerX;
+    this.playerWidth = width;
   }
   // draw the player
   draw() {
