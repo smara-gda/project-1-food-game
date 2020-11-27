@@ -6,6 +6,7 @@ class Game {
     this.lastBadFoodTimeStamp = 0;
     this.lastGoodFoodTimeStamp = 0;
     this.setKeyListeners();
+    this.score = 0;
     // this.condition = true;
   }
   // function to make the player move around on the screen
@@ -28,6 +29,7 @@ class Game {
       }
     });
   }
+
   // setting border so player does not move out of canvas
   avoidGoingOutOfCanvas() {
     this.player.playerX = Math.max(
@@ -72,7 +74,7 @@ class Game {
       ) {
         const indexOfBadFood = this.badFoods.indexOf(badfood);
         this.badFoods.splice(indexOfBadFood, 1);
-        // score -=10;
+        this.score -= 10;
         // play sad sound;
       }
     }
@@ -87,12 +89,16 @@ class Game {
         const indexofGoodFood = this.goodFoods.indexOf(goodfood);
         this.goodFoods.splice(indexofGoodFood, 1);
 
-        // score +=10;
+        this.score += 10;
         //play hppy sound;
       }
     }
   }
-
+  drawScore() {
+    context.fillStyle = '#a9dd9e';
+    context.font = '72px sans-serif';
+    context.fillText(this.score, 600, 450);
+  }
   deleteFoodsOutOfCanvas() {
     for (let badfoodItem of this.badFoods) {
       if (badfoodItem.badFoodY >= cnvHeight) {
@@ -139,5 +145,6 @@ class Game {
     context.clearRect(0, 0, canvas.width, canvas.height);
     this.player.draw();
     this.drawGoodAndBadFoods();
+    this.drawScore();
   }
 }
