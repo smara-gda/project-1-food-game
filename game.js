@@ -1,11 +1,12 @@
 class Game {
   constructor() {
     this.player = new Player(cnvWidth / 2, cnvHeight - 50, 50, 50);
-    this.badFoods = [new BadFood(cnvHeight)];
-    this.goodFoods = [new GoodFood()];
+    this.badFoods = [];
+    this.goodFoods = [];
     this.lastBadFoodTimeStamp = 0;
     this.lastGoodFoodTimeStamp = 0;
     this.setKeyListeners();
+    this.condition = true;
     // console.log(this.badFoods);
   }
   // function to make the player move around on the screen
@@ -52,7 +53,7 @@ class Game {
   rainingFoods() {
     const currentTimeStamp = Date.now();
     // make food items appear every 3 and 5 secs
-    if (currentTimeStamp > this.lastBadFoodTimeStamp + 2000) {
+    if (currentTimeStamp > this.lastBadFoodTimeStamp + 5000) {
       this.badFoods.push(new BadFood(0));
       this.lastBadFoodTimeStamp = currentTimeStamp;
     }
@@ -65,29 +66,56 @@ class Game {
   removeFoods() {
     for (let badfood of this.badFoods) {
       if (
-        badfood.badFoodY >= this.player.playerY - this.player.playerHeight &&
-        badfood.badFoodX >= this.player.playerX - this.player.playerWidth
+        badfood.badFoodY >= this.player.playerY &&
+        badfood.badFoodY <= this.player.playerY + this.player.playerY &&
+        badfood.badFoodX >= this.player.playerX &&
+        badfood.badFoodX <= this.player.playerX + this.player.playerWidth
       ) {
-        this.badFoods.splice(0, 1);
+        const indexOfBadFood = this.badFoods.indexOf(badfood);
+        this.badFoods.splice(indexOfBadFood, 1);
         // score -=10;
         // play sad sound;
       }
     }
+
     for (let goodfood of this.goodFoods) {
       if (
-        goodfood.goodFoodY >= this.player.playerY - this.player.playerHeight &&
-        goodfood.goodFoodX >= this.player.playerX - this.player.playerWidth
+        goodfood.goodFoodY >= this.player.playerY &&
+        goodfood.goodFoodY <= this.player.playerY + this.player.playerY &&
+        goodfood.goodFoodX >= this.player.playerX &&
+        goodfood.goodFoodX <= this.player.playerX + this.player.playerWidth
       ) {
-        this.goodFoods.splice(0, 1);
+        const indexofGoodFood = this.goodFoods.indexOf(goodfood);
+        this.goodFoods.splice(indexofGoodFood, 1);
+
         // score +=10;
         //play hppy sound;
       }
     }
   }
 
+  deleteFoodsOutOfCanvas() {
+    for (let badfoodItem of this.badFoods) {
+      if (badfoodItem.badFoodY >= cnvHeight) {
+        const badFoodIndex = this.badFoods.indexOf(badfoodItem);
+        this.badFoods.splice(badFoodIndex, 1);
+        console.log(this.badFoods);
+      }
+    }
+    for (let goodfoodItem of this.goodFoods) {
+      if (goodfoodItem.goodFoodY >= cnvHeight) {
+        const goodFoodIndex = this.goodFoods.indexOf(goodfoodItem);
+        this.goodFoods.splice(goodFoodIndex, 1);
+        console.log(this.goodFoods);
+      }
+    }
+  }
+
   // call runLogic method for every element in the game that has it
   runLogic() {
+    this.deleteFoodsOutOfCanvas();
     this.rainingFoods();
+
     // run bad food runLogic method for each element in its array
     for (let badFood of this.badFoods) {
       badFood.runLogic();
@@ -99,6 +127,7 @@ class Game {
     this.removeFoods();
     this.avoidGoingOutOfCanvas();
   }
+
   // calling draw method for every food
   drawGoodAndBadFoods() {
     for (let badFood of this.badFoods) {
