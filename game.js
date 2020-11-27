@@ -6,8 +6,7 @@ class Game {
     this.lastBadFoodTimeStamp = 0;
     this.lastGoodFoodTimeStamp = 0;
     this.setKeyListeners();
-    this.condition = true;
-    // console.log(this.badFoods);
+    // this.condition = true;
   }
   // function to make the player move around on the screen
   setKeyListeners() {
@@ -99,14 +98,12 @@ class Game {
       if (badfoodItem.badFoodY >= cnvHeight) {
         const badFoodIndex = this.badFoods.indexOf(badfoodItem);
         this.badFoods.splice(badFoodIndex, 1);
-        console.log(this.badFoods);
       }
     }
     for (let goodfoodItem of this.goodFoods) {
       if (goodfoodItem.goodFoodY >= cnvHeight) {
         const goodFoodIndex = this.goodFoods.indexOf(goodfoodItem);
         this.goodFoods.splice(goodFoodIndex, 1);
-        console.log(this.goodFoods);
       }
     }
   }
