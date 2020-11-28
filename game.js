@@ -1,3 +1,5 @@
+const eatSound = new Audio('sounds/human_eat_crunch_apple_002.mp3');
+eatSound.playbackRate = 3;
 class Game {
   constructor() {
     this.player = new Player(cnvWidth / 2, cnvHeight - 50, 50, 50);
@@ -109,7 +111,7 @@ class Game {
         this.goodFoods.splice(indexofGoodFood, 1);
 
         this.score += 10;
-        //play hppy sound;
+        eatSound.play();
       }
     }
   }

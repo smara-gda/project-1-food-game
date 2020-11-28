@@ -32,5 +32,7 @@ replayElement.addEventListener('click', () => {
 -lose points when touching bad food - DONE
 -gain points when touching good food - DONE
 -erase foods from the array when touching them or when they are out of the canvas. DONE!
+- add sounds
+- add icons
 -Maybe have lives, if you eat bad food 3 times, you die, game over? 
 */
