@@ -1,5 +1,8 @@
+const losePointsSound = new Audio('sounds/losing_points.mp3');
 const eatSound = new Audio('sounds/human_eat_crunch_apple_002.mp3'); //sound from zapsplat.com
+const gameOver = new Audio('sounds/game_over.mp3'); //sound from zapsplat.com
 eatSound.playbackRate = 2.5;
+
 class Game {
   constructor() {
     this.player = new Player(cnvWidth / 2, cnvHeight - 50, 50, 50);
@@ -66,6 +69,7 @@ class Game {
         this.loop();
       });
     } else {
+      gameOver.play();
       this.gameOver();
     }
   }
@@ -97,7 +101,7 @@ class Game {
         this.score -= 10;
         const scoreElement = document.querySelector('.score span');
         scoreElement.innerText = ` ${this.score}`;
-        // play sad sound;
+        losePointsSound.play();
       }
     }
 
