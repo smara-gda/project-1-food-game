@@ -99,8 +99,8 @@ class Game {
   }
   drawScore() {
     context.fillStyle = '#a9dd9e';
-    context.font = '72px sans-serif';
-    context.fillText(this.score, 600, 450);
+    context.font = '70px sans-serif';
+    context.fillText(this.score, 550, 480);
   }
   deleteFoodsOutOfCanvas() {
     for (let badfoodItem of this.badFoods) {
