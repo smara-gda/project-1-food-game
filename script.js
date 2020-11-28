@@ -15,6 +15,7 @@ const gamingScreen = document.getElementById('game-screen');
 
 startElement.addEventListener('click', () => {
   gamingScreen.style.display = 'block';
+  startingSection.style.display = 'none';
   startElement.style.display = 'none';
   game.loop();
 });

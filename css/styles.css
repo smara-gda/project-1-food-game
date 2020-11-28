@@ -16,7 +16,16 @@ canvas {
 #game-screen {
   display: none;
 }
+
+.styles{
+    display: flex;
+}
 button {
-  width: 150px;
+  width: 100%;
   height: 36px;
+}
+
+.start-text {
+  color: #f1f0ee;
+  font-family: 'font-family: 'Oswald', sans-serif;;
 }
