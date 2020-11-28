@@ -11,3 +11,12 @@ canvas {
   background-color: #21120a;
   border: 5px solid #737373;
 }
+
+#game-over,
+#game-screen {
+  display: none;
+}
+button {
+  width: 150px;
+  height: 36px;
+}
