@@ -70,10 +70,10 @@ class Game {
   removeFoods() {
     for (let badfood of this.badFoods) {
       if (
-        badfood.badFoodY >= this.player.playerY &&
-        badfood.badFoodY <= this.player.playerY + this.player.playerY &&
-        badfood.badFoodX >= this.player.playerX &&
-        badfood.badFoodX <= this.player.playerX + this.player.playerWidth
+        this.player.playerX < badfood.badFoodX + badfood.foodWidth / 2 &&
+        this.player.playerX + this.player.playerWidth / 2 > badfood.badFoodX &&
+        this.player.playerY < badfood.badFoodY + badfood.foodHeight &&
+        this.player.playerY + this.player.playerHeight / 2 > badfood.badFoodY
       ) {
         const indexOfBadFood = this.badFoods.indexOf(badfood);
         this.badFoods.splice(indexOfBadFood, 1);
@@ -84,10 +84,10 @@ class Game {
 
     for (let goodfood of this.goodFoods) {
       if (
-        goodfood.goodFoodY >= this.player.playerY &&
-        goodfood.goodFoodY <= this.player.playerY + this.player.playerY &&
-        goodfood.goodFoodX >= this.player.playerX &&
-        goodfood.goodFoodX <= this.player.playerX + this.player.playerWidth
+        this.player.playerX < goodfood.goodFoodX + goodfood.foodWidth &&
+        this.player.playerX + this.player.playerWidth > goodfood.goodFoodX &&
+        this.player.playerY < goodfood.goodFoodY + goodfood.foodHeight &&
+        this.player.playerY + this.player.playerHeight > goodfood.goodFoodY
       ) {
         const indexofGoodFood = this.goodFoods.indexOf(goodfood);
         this.goodFoods.splice(indexofGoodFood, 1);
