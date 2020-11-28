@@ -7,7 +7,7 @@ class Game {
     this.lastGoodFoodTimeStamp = 0;
     this.setKeyListeners();
     this.score = 0;
-    // this.condition = true;
+    this.condition = true;
   }
   // function to make the player move around on the screen
   setKeyListeners() {
@@ -45,10 +45,13 @@ class Game {
   loop() {
     this.runLogic();
     this.draw();
-
-    window.requestAnimationFrame(() => {
-      this.loop();
-    });
+    if (this.condition) {
+      window.requestAnimationFrame(() => {
+        this.loop();
+      });
+    } else {
+      alert('GAME OVER');
+    }
   }
 
   rainingFoods() {
@@ -129,6 +132,9 @@ class Game {
     }
     this.removeFoods();
     this.avoidGoingOutOfCanvas();
+    if (this.score <= -10) {
+      this.condition = false;
+    }
   }
 
   // calling draw method for every food
