@@ -29,3 +29,25 @@ button {
   color: #f1f0ee;
   font-family: 'font-family: 'Oswald', sans-serif;;
 }
+
+.score-parent{
+    display: none;
+    width:100%; 
+    height:60px; 
+    position:relative;
+    white-space: nowrap;
+    overflow: hidden;
+    
+    
+  }
+  
+  .score{
+    margin-left: 12px;
+    top: 0;
+    width:100px; 
+    right:0; 
+    bottom: 0;
+    background:#f0f8f9; 
+    border-radius: 4px;
+    
+}

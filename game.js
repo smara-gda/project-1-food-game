@@ -95,6 +95,8 @@ class Game {
         const indexOfBadFood = this.badFoods.indexOf(badfood);
         this.badFoods.splice(indexOfBadFood, 1);
         this.score -= 10;
+        const scoreElement = document.querySelector('.score span');
+        scoreElement.innerText = ` ${this.score}`;
         // play sad sound;
       }
     }
@@ -111,15 +113,17 @@ class Game {
         this.goodFoods.splice(indexofGoodFood, 1);
 
         this.score += 10;
+        const scoreElement = document.querySelector('.score span');
+        scoreElement.innerText = ` ${this.score}`;
         eatSound.play();
       }
     }
   }
-  drawScore() {
-    context.fillStyle = '#a9dd9e';
-    context.font = '70px sans-serif';
-    context.fillText(this.score, 550, 480);
-  }
+  // drawScore() {
+  //   context.fillStyle = '#a9dd9e';
+  //   context.font = '70px sans-serif';
+  //   context.fillText(this.score, 550, 480);
+  // }
   deleteFoodsOutOfCanvas() {
     for (let badfoodItem of this.badFoods) {
       if (badfoodItem.badFoodY >= cnvHeight) {
@@ -169,6 +173,6 @@ class Game {
     context.clearRect(0, 0, canvas.width, canvas.height);
     this.player.draw();
     this.drawGoodAndBadFoods();
-    this.drawScore();
+    // this.drawScore();
   }
 }
