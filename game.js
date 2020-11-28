@@ -91,10 +91,10 @@ class Game {
     for (let badfood of this.badFoods) {
       if (
         // collision detection
-        this.player.playerX < badfood.badFoodX + badfood.foodWidth / 2 &&
-        this.player.playerX + this.player.playerWidth / 2 > badfood.badFoodX &&
+        this.player.playerX < badfood.badFoodX + badfood.foodWidth &&
+        this.player.playerX + this.player.playerWidth > badfood.badFoodX &&
         this.player.playerY < badfood.badFoodY + badfood.foodHeight &&
-        this.player.playerY + this.player.playerHeight / 2 > badfood.badFoodY
+        this.player.playerY + this.player.playerHeight > badfood.badFoodY
       ) {
         const indexOfBadFood = this.badFoods.indexOf(badfood);
         this.badFoods.splice(indexOfBadFood, 1);
