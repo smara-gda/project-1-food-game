@@ -12,6 +12,7 @@ const startingSection = document.getElementById('start');
 const gameOverSection = document.getElementById('game-over');
 const gamingScreen = document.getElementById('game-screen');
 const scoreElement = document.querySelector('.score-parent');
+const scoreSpan = document.querySelector('.score span');
 
 startElement.addEventListener('click', () => {
   gamingScreen.style.display = 'block';
@@ -25,6 +26,7 @@ replayElement.addEventListener('click', () => {
   gameOverSection.style.display = 'none';
   gamingScreen.style.display = 'block';
   scoreElement.style.display = 'block';
+  scoreSpan.innerHTML = '0';
   game.condition = true;
   game.resetGame();
   game.loop();
