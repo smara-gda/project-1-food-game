@@ -70,6 +70,7 @@ class Game {
   removeFoods() {
     for (let badfood of this.badFoods) {
       if (
+        // collision detection
         this.player.playerX < badfood.badFoodX + badfood.foodWidth / 2 &&
         this.player.playerX + this.player.playerWidth / 2 > badfood.badFoodX &&
         this.player.playerY < badfood.badFoodY + badfood.foodHeight &&
@@ -84,6 +85,7 @@ class Game {
 
     for (let goodfood of this.goodFoods) {
       if (
+        // collision detection
         this.player.playerX < goodfood.goodFoodX + goodfood.foodWidth &&
         this.player.playerX + this.player.playerWidth > goodfood.goodFoodX &&
         this.player.playerY < goodfood.goodFoodY + goodfood.foodHeight &&
