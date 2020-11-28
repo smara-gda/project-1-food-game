@@ -7,7 +7,7 @@ class BadFood {
     this.badFoodY = y;
   }
   runLogic() {
-    this.badFoodY += 1.5;
+    this.badFoodY += 2;
   }
   drawBadFood() {
     context.fillStyle = '#80463e';

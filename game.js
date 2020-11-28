@@ -15,16 +15,16 @@ class Game {
       event.preventDefault();
       switch (event.key) {
         case 'ArrowUp':
-          this.player.playerY -= 20;
+          this.player.playerY -= 30;
           break;
         case 'ArrowDown':
-          this.player.playerY += 20;
+          this.player.playerY += 30;
           break;
         case 'ArrowRight':
-          this.player.playerX += 20;
+          this.player.playerX += 30;
           break;
         case 'ArrowLeft':
-          this.player.playerX -= 20;
+          this.player.playerX -= 30;
           break;
       }
     });
@@ -57,7 +57,7 @@ class Game {
   rainingFoods() {
     const currentTimeStamp = Date.now();
     // make food items appear every 3 and 5 secs
-    if (currentTimeStamp > this.lastBadFoodTimeStamp + 2000) {
+    if (currentTimeStamp > this.lastBadFoodTimeStamp + 1000) {
       this.badFoods.push(new BadFood(0));
       this.lastBadFoodTimeStamp = currentTimeStamp;
     }
