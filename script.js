@@ -4,12 +4,33 @@ const cnvWidth = canvas.width;
 const cnvHeight = canvas.height;
 
 const game = new Game();
-game.loop();
+// game.loop();
+
+const startElement = document.getElementById('trigger-game');
+const replayElement = document.getElementById('trigger-replay');
+
+const startingSection = document.getElementById('start');
+const gameOverSection = document.getElementById('game-over');
+const gamingScreen = document.getElementById('game-screen');
+
+startElement.addEventListener('click', () => {
+  gamingScreen.style.display = 'block';
+  startElement.style.display = 'none';
+  game.loop();
+});
+
+replayElement.addEventListener('click', () => {
+  gameOverSection.style.display = 'none';
+  gamingScreen.style.display = 'block';
+  game.condition = true;
+  game.resetGame();
+  game.loop();
+});
 
 /* TODO: 
--score, 
--lose points when touching bad food,
--gain points when touching good food, 
--erase foods from the array when touching them or when they are out of the canvas. DONE (with bugs :( ))
+-score - DONE
+-lose points when touching bad food - DONE
+-gain points when touching good food - DONE
+-erase foods from the array when touching them or when they are out of the canvas. DONE!
 -Maybe have lives, if you eat bad food 3 times, you die, game over? 
 */

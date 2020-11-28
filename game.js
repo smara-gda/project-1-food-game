@@ -41,6 +41,20 @@ class Game {
       0
     );
   }
+
+  gameOver() {
+    gamingScreen.style.display = 'none';
+    gameOverSection.style.display = 'block';
+  }
+  resetGame() {
+    this.score = 0;
+    this.badFoods = [];
+    this.goodFoods = [];
+    this.lastBadFoodTimeStamp = 0;
+    this.lastGoodFoodTimeStamp = 0;
+    this.condition = true;
+  }
+
   // the game loop function, it keeps running all game functions on a loop
   loop() {
     this.runLogic();
@@ -50,7 +64,7 @@ class Game {
         this.loop();
       });
     } else {
-      alert('GAME OVER');
+      this.gameOver();
     }
   }
 
