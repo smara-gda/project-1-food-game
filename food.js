@@ -13,8 +13,18 @@ class Food {
     this.y += this.speed;
   }
   drawFood() {
-    context.fillStyle = this.color;
-    context.fillRect(this.x, this.y, this.height, this.width);
-    // context.drawImage(this.image, this.x, this.y.this.width, this.height);
+    // context.fillStyle = this.color;
+    // context.fillRect(this.x, this.y, this.height, this.width);
+    context.drawImage(
+      this.image,
+      1.7,
+      -5,
+      this.vegx,
+      this.vegy,
+      this.x,
+      this.y,
+      this.width,
+      this.height
+    );
   }
 }

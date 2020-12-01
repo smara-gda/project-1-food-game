@@ -5,7 +5,7 @@ eatSound.playbackRate = 2.5;
 
 class Game {
   constructor() {
-    this.player = new Player(cnvWidth / 2, cnvHeight - 50, 50, 50);
+    this.player = new Player(cnvWidth / 2, cnvHeight - 50, 30, 30);
 
     this.foods = [];
     this.lastBadFoodTimeStamp = 0;
@@ -144,6 +144,7 @@ class Game {
     }
   }
   // function that invokes all drawing functions in the game
+
   draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     this.player.draw();
