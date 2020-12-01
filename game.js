@@ -97,11 +97,16 @@ class Game {
       ) {
         const indexOfFood = this.foods.indexOf(food);
         this.foods.splice(indexOfFood, 1);
+
+        let score = this.score;
         this.score += food.impact;
+        if (score < this.score) {
+          eatSound.play();
+        } else {
+          losePointsSound.play();
+        }
         const scoreElement = document.querySelector('.score span');
         scoreElement.innerText = ` ${this.score}`;
-        // losePointsSound.play();
-        // eatSound.play();
       }
     }
   }
