@@ -54,11 +54,8 @@ class Game {
   resetGame() {
     this.score = 0;
     this.foods = [];
-    // this.badFoods = [];
-    // this.goodFoods = [];
     this.lastBadFoodTimeStamp = 0;
     this.lastGoodFoodTimeStamp = 0;
-    // this.lastFoodTimeStamp = 0;
     this.condition = true;
   }
 
