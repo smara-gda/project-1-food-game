@@ -1,21 +1,9 @@
-class BadFood {
-  constructor(y) {
-    this.foodWidth = 50;
-    // position of food item is random
-    this.badFoodX = Math.floor(Math.random() * (cnvWidth - this.foodWidth));
-    this.foodHeight = 50;
-    this.badFoodY = y;
-  }
-  runLogic() {
-    this.badFoodY += 2;
-  }
-  drawBadFood() {
-    context.fillStyle = '#80463e';
-    context.fillRect(
-      this.badFoodX,
-      this.badFoodY,
-      this.foodHeight,
-      this.foodWidth
-    );
+class BadFood extends Food {
+  constructor() {
+    super();
+    // this.image.src = 'image.png';
+    this.speed = 2;
+    this.color = '#80463e';
+    this.impact = -10;
   }
 }

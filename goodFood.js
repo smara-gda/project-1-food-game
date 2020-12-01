@@ -1,21 +1,9 @@
-class GoodFood {
+class GoodFood extends Food {
   constructor() {
-    this.foodWidth = 50;
-    // position of food item is random
-    this.goodFoodX = Math.floor(Math.random() * (cnvWidth - this.foodWidth));
-    this.goodFoodY = 0;
-    this.foodHeight = 50;
-  }
-  runLogic() {
-    this.goodFoodY += 1;
-  }
-  drawGoodFood() {
-    context.fillStyle = '#74c9bf';
-    context.fillRect(
-      this.goodFoodX,
-      this.goodFoodY,
-      this.foodHeight,
-      this.foodWidth
-    );
+    super();
+    // this.image.src = 'image.png';
+    this.speed = 1;
+    this.impact = 10;
+    this.color = '#74c9bf';
   }
 }

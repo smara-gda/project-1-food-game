@@ -6,8 +6,8 @@ eatSound.playbackRate = 2.5;
 class Game {
   constructor() {
     this.player = new Player(cnvWidth / 2, cnvHeight - 50, 50, 50);
-    this.badFoods = [];
-    this.goodFoods = [];
+
+    this.foods = [];
     this.lastBadFoodTimeStamp = 0;
     this.lastGoodFoodTimeStamp = 0;
     this.setKeyListeners();
@@ -53,10 +53,12 @@ class Game {
   }
   resetGame() {
     this.score = 0;
-    this.badFoods = [];
-    this.goodFoods = [];
+    this.foods = [];
+    // this.badFoods = [];
+    // this.goodFoods = [];
     this.lastBadFoodTimeStamp = 0;
     this.lastGoodFoodTimeStamp = 0;
+    // this.lastFoodTimeStamp = 0;
     this.condition = true;
   }
 
@@ -78,67 +80,40 @@ class Game {
     const currentTimeStamp = Date.now();
     // make food items appear every 3 and 5 secs
     if (currentTimeStamp > this.lastBadFoodTimeStamp + 1000) {
-      this.badFoods.push(new BadFood(0));
+      this.foods.push(new BadFood());
       this.lastBadFoodTimeStamp = currentTimeStamp;
     }
     if (currentTimeStamp > this.lastGoodFoodTimeStamp + 3000) {
-      this.goodFoods.push(new GoodFood());
+      this.foods.push(new GoodFood());
       this.lastGoodFoodTimeStamp = currentTimeStamp;
     }
   }
 
   removeFoods() {
-    for (let badfood of this.badFoods) {
+    for (let food of this.foods) {
       if (
         // collision detection
-        this.player.playerX < badfood.badFoodX + badfood.foodWidth &&
-        this.player.playerX + this.player.playerWidth > badfood.badFoodX &&
-        this.player.playerY < badfood.badFoodY + badfood.foodHeight &&
-        this.player.playerY + this.player.playerHeight > badfood.badFoodY
+        this.player.playerX < food.x + food.width &&
+        this.player.playerX + this.player.playerWidth > food.x &&
+        this.player.playerY < food.y + food.height &&
+        this.player.playerY + this.player.playerHeight > food.y
       ) {
-        const indexOfBadFood = this.badFoods.indexOf(badfood);
-        this.badFoods.splice(indexOfBadFood, 1);
-        this.score -= 10;
+        const indexOfFood = this.foods.indexOf(food);
+        this.foods.splice(indexOfFood, 1);
+        this.score += food.impact;
         const scoreElement = document.querySelector('.score span');
         scoreElement.innerText = ` ${this.score}`;
-        losePointsSound.play();
-      }
-    }
-
-    for (let goodfood of this.goodFoods) {
-      if (
-        // collision detection
-        this.player.playerX < goodfood.goodFoodX + goodfood.foodWidth &&
-        this.player.playerX + this.player.playerWidth > goodfood.goodFoodX &&
-        this.player.playerY < goodfood.goodFoodY + goodfood.foodHeight &&
-        this.player.playerY + this.player.playerHeight > goodfood.goodFoodY
-      ) {
-        const indexofGoodFood = this.goodFoods.indexOf(goodfood);
-        this.goodFoods.splice(indexofGoodFood, 1);
-
-        this.score += 10;
-        const scoreElement = document.querySelector('.score span');
-        scoreElement.innerText = ` ${this.score}`;
-        eatSound.play();
+        // losePointsSound.play();
+        // eatSound.play();
       }
     }
   }
-  // drawScore() {
-  //   context.fillStyle = '#a9dd9e';
-  //   context.font = '70px sans-serif';
-  //   context.fillText(this.score, 550, 480);
-  // }
+
   deleteFoodsOutOfCanvas() {
-    for (let badfoodItem of this.badFoods) {
-      if (badfoodItem.badFoodY >= cnvHeight) {
-        const badFoodIndex = this.badFoods.indexOf(badfoodItem);
-        this.badFoods.splice(badFoodIndex, 1);
-      }
-    }
-    for (let goodfoodItem of this.goodFoods) {
-      if (goodfoodItem.goodFoodY >= cnvHeight) {
-        const goodFoodIndex = this.goodFoods.indexOf(goodfoodItem);
-        this.goodFoods.splice(goodFoodIndex, 1);
+    for (let food of this.foods) {
+      if (food.y >= cnvHeight) {
+        const foodIndex = this.foods.indexOf(food);
+        this.foods.splice(foodIndex, 1);
       }
     }
   }
@@ -149,13 +124,10 @@ class Game {
     this.rainingFoods();
 
     // run bad food runLogic method for each element in its array
-    for (let badFood of this.badFoods) {
-      badFood.runLogic();
+    for (let food of this.foods) {
+      food.runLogic();
     }
-    // run good food runLogic method for each element in its array
-    for (let goodFood of this.goodFoods) {
-      goodFood.runLogic();
-    }
+
     this.removeFoods();
     this.avoidGoingOutOfCanvas();
     if (this.score <= -10) {
@@ -165,11 +137,8 @@ class Game {
 
   // calling draw method for every food
   drawGoodAndBadFoods() {
-    for (let badFood of this.badFoods) {
-      badFood.drawBadFood();
-    }
-    for (let goodFood of this.goodFoods) {
-      goodFood.drawGoodFood();
+    for (let food of this.foods) {
+      food.drawFood();
     }
   }
   // function that invokes all drawing functions in the game
@@ -177,6 +146,5 @@ class Game {
     context.clearRect(0, 0, canvas.width, canvas.height);
     this.player.draw();
     this.drawGoodAndBadFoods();
-    // this.drawScore();
   }
 }
