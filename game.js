@@ -6,7 +6,7 @@ eatSound.playbackRate = 2.5;
 
 class Game {
   constructor() {
-    this.player = new Player(cnvWidth / 2, cnvHeight - 50, 30, 30);
+    this.player = new Player(cnvWidth / 2, cnvHeight - 50, 50, 70);
 
     this.foods = [];
     this.lastBadFoodTimeStamp = 0;
@@ -14,6 +14,7 @@ class Game {
     this.setKeyListeners();
     this.score = 0;
     this.condition = true;
+    this.lives = 3;
   }
   // function to make the player move around on the screen
   setKeyListeners() {
