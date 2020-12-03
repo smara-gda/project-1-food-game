@@ -14,7 +14,8 @@ class GoodFood extends Food {
     'images/brocolli.png',
     'images/tomato.png',
     'images/avocado.png',
-    'images/mushrooms.png'
+    'images/mushrooms.png',
+    'images/apple.png'
   );
   randomFoods() {
     let randomNo = Math.floor(Math.random() * this.allImages.length);
