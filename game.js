@@ -1,5 +1,5 @@
 const missedFood = new Audio('sounds/missedFoodNegativeSound.mp3');
-const losePointsSound = new Audio('sounds/losing_points.mp3');
+const losePointsSound = new Audio('sounds/lost_points.mp3');
 const eatSound = new Audio('sounds/human_eat_crunch_apple_002.mp3'); //sound from zapsplat.com
 const gameOver = new Audio('sounds/game_over.mp3'); //sound from zapsplat.com
 eatSound.playbackRate = 2.5;
