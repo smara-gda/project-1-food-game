@@ -6,7 +6,7 @@ eatSound.playbackRate = 2.5;
 
 class Game {
   constructor() {
-    this.player = new Player(cnvWidth / 2, cnvHeight - 50, 50, 70);
+    this.player = new Player(cnvWidth / 2, cnvHeight - 50, 40, 40);
 
     this.foods = [];
     this.lastBadFoodTimeStamp = 0;
