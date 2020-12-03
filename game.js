@@ -1,3 +1,4 @@
+const missedFood = new Audio('sounds/missedFoodNegativeSound.mp3');
 const losePointsSound = new Audio('sounds/losing_points.mp3');
 const eatSound = new Audio('sounds/human_eat_crunch_apple_002.mp3'); //sound from zapsplat.com
 const gameOver = new Audio('sounds/game_over.mp3'); //sound from zapsplat.com
@@ -85,6 +86,10 @@ class Game {
       this.lastGoodFoodTimeStamp = currentTimeStamp;
     }
   }
+  updateScore() {
+    const scoreElement = document.querySelector('.score span');
+    scoreElement.innerText = ` ${this.score}`;
+  }
 
   removeFoods() {
     for (let food of this.foods) {
@@ -105,9 +110,8 @@ class Game {
         } else {
           losePointsSound.play();
         }
-        const scoreElement = document.querySelector('.score span');
-        scoreElement.innerText = ` ${this.score}`;
       }
+      this.updateScore();
     }
   }
 
@@ -120,8 +124,19 @@ class Game {
     }
   }
 
+  dontMissGoodFood() {
+    for (let food of this.foods) {
+      if (food.y >= cnvHeight && food.impact === 10) {
+        missedFood.play();
+        this.score = this.score - 10;
+      }
+      this.updateScore();
+    }
+  }
+
   // call runLogic method for every element in the game that has it
   runLogic() {
+    this.dontMissGoodFood();
     this.deleteFoodsOutOfCanvas();
     this.rainingFoods();
 
