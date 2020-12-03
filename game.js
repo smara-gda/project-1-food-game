@@ -7,14 +7,15 @@ eatSound.playbackRate = 2.5;
 class Game {
   constructor() {
     this.player = new Player(cnvWidth / 2, cnvHeight - 50, 40, 40);
-
     this.foods = [];
     this.lastBadFoodTimeStamp = 0;
     this.lastGoodFoodTimeStamp = 0;
+    this.intervalBetweenFoods = 2000;
     this.setKeyListeners();
     this.score = 0;
     this.condition = true;
     this.lives = 3;
+    this.badFood = new BadFood();
   }
   // function to make the player move around on the screen
   setKeyListeners() {
@@ -58,6 +59,7 @@ class Game {
     this.foods = [];
     this.lastBadFoodTimeStamp = 0;
     this.lastGoodFoodTimeStamp = 0;
+    this.intervalBetweenFoods = 2000;
     this.condition = true;
   }
 
@@ -78,11 +80,17 @@ class Game {
   rainingFoods() {
     const currentTimeStamp = Date.now();
     // make food items appear every 3 and 5 secs
-    if (currentTimeStamp > this.lastBadFoodTimeStamp + 1000) {
+    if (
+      currentTimeStamp >
+      this.lastBadFoodTimeStamp + this.intervalBetweenFoods
+    ) {
       this.foods.push(new BadFood());
       this.lastBadFoodTimeStamp = currentTimeStamp;
     }
-    if (currentTimeStamp > this.lastGoodFoodTimeStamp + 3000) {
+    if (
+      currentTimeStamp >
+      this.lastGoodFoodTimeStamp + this.intervalBetweenFoods + 1000
+    ) {
       this.foods.push(new GoodFood());
       this.lastGoodFoodTimeStamp = currentTimeStamp;
     }
@@ -137,6 +145,8 @@ class Game {
 
   // call runLogic method for every element in the game that has it
   runLogic() {
+    this.intervalBetweenFoods *= 0.9999;
+    this.badFood.speed *= 1.005;
     this.dontMissGoodFood();
     this.deleteFoodsOutOfCanvas();
     this.rainingFoods();

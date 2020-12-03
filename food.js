@@ -8,6 +8,7 @@ class Food {
     this.speed = 1;
     this.color = null;
     this.image = new Image();
+    this.speed = 1;
   }
   runLogic() {
     this.y += this.speed;
