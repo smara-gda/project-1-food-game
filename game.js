@@ -10,7 +10,7 @@ class Game {
     this.foods = [];
     this.lastBadFoodTimeStamp = 0;
     this.lastGoodFoodTimeStamp = 0;
-    this.intervalBetweenFoods = 2000;
+    this.intervalBetweenFoods = 1500;
     this.setKeyListeners();
     this.score = 50;
     this.condition = true;
@@ -61,7 +61,7 @@ class Game {
     this.foods = [];
     this.lastBadFoodTimeStamp = 0;
     this.lastGoodFoodTimeStamp = 0;
-    this.intervalBetweenFoods = 2000;
+    this.intervalBetweenFoods = 1500;
     this.lives = 3;
     this.condition = true;
   }
