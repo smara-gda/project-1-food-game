@@ -30,19 +30,24 @@ button {
   font-family: 'font-family: 'Oswald', sans-serif;;
 }
 
+div .score-parent{
+  margin-bottom: 10px;
+}
 .score-parent{
     display: none;
     width:100%; 
-    height:60px; 
+    height:70px; 
     position:relative;
     white-space: nowrap;
     overflow: hidden;
+    margin-bottom: 30px;
     
     
   }
   
-  .score{
-    margin-left: 12px;
+  .score,
+  .lives{
+    margin-left: 14px;
     top: 0;
     width:100px; 
     right:0; 
@@ -51,3 +56,4 @@ button {
     border-radius: 4px;
     
 }
+ 

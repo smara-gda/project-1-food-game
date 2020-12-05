@@ -12,7 +12,7 @@ class Game {
     this.lastGoodFoodTimeStamp = 0;
     this.intervalBetweenFoods = 2000;
     this.setKeyListeners();
-    this.score = 0;
+    this.score = 50;
     this.condition = true;
     this.lives = 3;
     this.badFood = new BadFood();
@@ -60,6 +60,7 @@ class Game {
     this.lastBadFoodTimeStamp = 0;
     this.lastGoodFoodTimeStamp = 0;
     this.intervalBetweenFoods = 2000;
+    this.lives = 3;
     this.condition = true;
   }
 
@@ -99,6 +100,10 @@ class Game {
     const scoreElement = document.querySelector('.score span');
     scoreElement.innerText = ` ${this.score}`;
   }
+  updateLives() {
+    const livesElement = document.querySelector('.lives span');
+    livesElement.innerText = `${this.lives}`;
+  }
 
   removeFoods() {
     for (let food of this.foods) {
@@ -117,7 +122,9 @@ class Game {
         if (score < this.score) {
           eatSound.play();
         } else {
+          this.lives--;
           losePointsSound.play();
+          this.updateLives();
         }
       }
       this.updateScore();
@@ -158,7 +165,7 @@ class Game {
 
     this.removeFoods();
     this.avoidGoingOutOfCanvas();
-    if (this.score <= -10) {
+    if (!this.lives) {
       this.condition = false;
     }
   }
