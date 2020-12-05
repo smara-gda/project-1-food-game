@@ -3,6 +3,9 @@ const losePointsSound = new Audio('sounds/lost_points.mp3');
 const eatSound = new Audio('sounds/human_eat_crunch_apple_002.mp3'); //sound from zapsplat.com
 const gameOver = new Audio('sounds/game_over.mp3'); //sound from zapsplat.com
 eatSound.playbackRate = 2.5;
+eatSound.volume = 0.5;
+losePointsSound.volume = 0.3;
+gameOver.volume = 0.6;
 
 class Game {
   constructor() {
