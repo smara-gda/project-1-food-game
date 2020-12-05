@@ -53,6 +53,8 @@ class Game {
   gameOver() {
     gamingScreen.style.display = 'none';
     gameOverSection.style.display = 'block';
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
   }
   resetGame() {
     this.score = 0;

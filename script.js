@@ -1,3 +1,7 @@
+const backgroundMusic = new Audio('sounds/Jungle Friends.mp3');
+backgroundMusic.playbackRate = 0.9;
+backgroundMusic.volume = 0.3;
+
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 const cnvWidth = canvas.width;
@@ -16,6 +20,7 @@ const scoreSpan = document.querySelector('.score span');
 
 startElement.addEventListener('click', () => {
   gamingScreen.style.display = 'block';
+  backgroundMusic.play();
   startingSection.style.display = 'none';
   startElement.style.display = 'none';
   scoreElement.style.display = 'block';
@@ -25,6 +30,7 @@ startElement.addEventListener('click', () => {
 replayElement.addEventListener('click', () => {
   gameOverSection.style.display = 'none';
   gamingScreen.style.display = 'block';
+  backgroundMusic.play();
   scoreElement.style.display = 'block';
   scoreSpan.innerHTML = '0';
   game.condition = true;
