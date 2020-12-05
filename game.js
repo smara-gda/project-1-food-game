@@ -137,7 +137,7 @@ class Game {
     for (let food of this.foods) {
       if (food.y >= cnvHeight && food.impact === 10) {
         missedFood.play();
-        this.score = this.score - 10;
+        this.score = this.score - 30;
       }
       this.updateScore();
     }
