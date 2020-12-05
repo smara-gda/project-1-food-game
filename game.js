@@ -89,7 +89,7 @@ class Game {
     }
     if (
       currentTimeStamp >
-      this.lastGoodFoodTimeStamp + this.intervalBetweenFoods + 1000
+      this.lastGoodFoodTimeStamp + this.intervalBetweenFoods + 500
     ) {
       this.foods.push(new GoodFood());
       this.lastGoodFoodTimeStamp = currentTimeStamp;
