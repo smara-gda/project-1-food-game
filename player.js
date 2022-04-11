@@ -1,3 +1,26 @@
+playerImages = new Array(
+  'player-sprites/girl-run-1.png',
+  'player-sprites/girl-run-2.png',
+  'player-sprites/girl-run-3.png',
+  'player-sprites/girl-run-4.png',
+  'player-sprites/girl-run-5.png',
+  'player-sprites/girl-run-6.png',
+  'player-sprites/girl-run-7.png',
+  'player-sprites/girl-run-8.png',
+  'player-sprites/girl-run-9.png',
+  'player-sprites/girl-run-10.png',
+  'player-sprites/girl-run-11.png',
+  'player-sprites/girl-run-12.png',
+  'player-sprites/girl-run-13.png',
+  'player-sprites/girl-run-14.png',
+  'player-sprites/girl-run-15.png',
+  'player-sprites/girl-run-16.png',
+  'player-sprites/girl-run-17.png',
+  'player-sprites/girl-run-18.png',
+  'player-sprites/girl-run-19.png',
+  'player-sprites/girl-run-20.png',
+);
+
 class Player {
   constructor(playerX, playerY, height, width) {
     this.playerHeight = height;
@@ -5,18 +28,24 @@ class Player {
     this.playerX = playerX;
     this.playerWidth = width;
     this.image = new Image();
-    this.image.src = 'player-sprites/girl-walk-1.png';
+    this.image.src = playerImages[0];
+    this.imageTimeStamp = 0;
+    this.srcIndex = 0;
   }
 
-  // playerImages = new Array();
-
   draw() {
+    if (Date.now() > this.imageTimeStamp + 300) {
+      this.srcIndex++;
+      this.srcIndex = this.srcIndex % 2;
+      this.image.src = playerImages[this.srcIndex];
+      this.imageTimeStamp = Date.now();
+    }
     context.drawImage(
       this.image,
       this.playerX,
       this.playerY,
       this.playerWidth,
-      this.playerHeight
+      this.playerHeight,
     );
   }
 }
