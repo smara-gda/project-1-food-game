@@ -47,13 +47,11 @@ div .score-parent {
 
 .score,
 .lives {
-  margin-left: 14px;
-  top: 0;
-  width: 100px;
-  right: 0;
-  bottom: 0;
-  background: #f0f8f9;
-  border-radius: 4px;
+  width: 100%;
+  border-radius: 2px;
+  padding-left: 1em;
+  background-color: rgb(255, 255, 254);
+  margin: 6px 0;
 }
 
 .game-header {
