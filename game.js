@@ -45,16 +45,16 @@ class Game {
   avoidGoingOutOfCanvas() {
     this.player.playerX = Math.max(
       Math.min(this.player.playerX, cnvWidth - this.player.playerWidth),
-      0
+      0,
     );
     this.player.playerY = Math.max(
       Math.min(this.player.playerY, cnvHeight - this.player.playerHeight),
-      0
+      0,
     );
   }
 
   gameOver() {
-    gamingScreen.style.display = 'none';
+    // gamingScreen.style.display = 'none';
     gameOverSection.style.display = 'block';
     backgroundMusic.pause();
     backgroundMusic.currentTime = 0;
@@ -80,6 +80,8 @@ class Game {
     } else {
       gameOver.play();
       this.gameOver();
+      this.player.hidePlayer(cnvHeight, cnvWidth);
+      this.player.drawDeadPlayer();
     }
   }
 
@@ -187,5 +189,6 @@ class Game {
     context.clearRect(0, 0, canvas.width, canvas.height);
     this.player.draw();
     this.drawGoodAndBadFoods();
+    // this.player.drawDeadPlayer();
   }
 }

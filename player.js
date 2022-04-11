@@ -20,7 +20,6 @@ playerImages = new Array(
   'player-sprites/girl-run-19.png',
   'player-sprites/girl-run-20.png',
 );
-
 class Player {
   constructor(playerX, playerY, height, width) {
     this.playerHeight = height;
@@ -28,15 +27,18 @@ class Player {
     this.playerX = playerX;
     this.playerWidth = width;
     this.image = new Image();
+    this.deadImage = new Image();
+
+    this.deadImage.src = 'player-sprites/girl-dead-30.png';
     this.image.src = playerImages[0];
     this.imageTimeStamp = 0;
     this.srcIndex = 0;
   }
 
   draw() {
-    if (Date.now() > this.imageTimeStamp + 300) {
+    if (Date.now() > this.imageTimeStamp + 200) {
       this.srcIndex++;
-      this.srcIndex = this.srcIndex % 2;
+      this.srcIndex = this.srcIndex % 4;
       this.image.src = playerImages[this.srcIndex];
       this.imageTimeStamp = Date.now();
     }
@@ -47,5 +49,18 @@ class Player {
       this.playerWidth,
       this.playerHeight,
     );
+  }
+
+  drawDeadPlayer() {
+    context.drawImage(
+      this.deadImage,
+      this.playerX,
+      this.playerY,
+      this.playerWidth,
+      this.playerHeight,
+    );
+  }
+  hidePlayer(canvasHeight, canvasWidth) {
+    context.clearRect(this.playerX, this.playerY, canvasHeight, canvasWidth);
   }
 }

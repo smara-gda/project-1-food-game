@@ -16,6 +16,7 @@ canvas {
 #game-over,
 #game-screen {
   display: none;
+  padding-right: 2em;
 }
 
 .styles {
